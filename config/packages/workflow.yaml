@@ -1,0 +1,32 @@
+framework:
+    workflows:
+        employee_leave:
+            type: 'workflow'
+            audit_trail:
+                enabled: true
+            marking_store:
+                type: 'multiple_state'
+                arguments:
+                    - 'currentPlace'
+            supports:
+                - App\Entity\Empleave
+            initial_place: draft
+            places:
+                - draft
+                - recommend
+                - approval
+                - accepted
+                - rejected
+            transitions:
+                to_recommend:
+                    from: draft
+                    to:   recommend
+                to_approval:
+                    from: recommend
+                    to: approval
+                to_accepted:
+                    from: approval
+                    to:   accepted
+                to_rejected:
+                    from: [recommend, approval]
+                    to:   rejected
