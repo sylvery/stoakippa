@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %} | StoaKippa</title>
+        {% block stylesheets %}
+            {% include "stylesheets.html.twig" %}
+        {% endblock %}
+    </head>
+    <body>
+        {% if app.user %}
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark container-fluid">
+            <a class="navbar-brand" href="#">S&middot;T&middot;O&middot;A</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <div class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <nav class="nav justify-content-center">
+                        <a class="nav-link" href="#">Leave</a>
+                        <a class="nav-link" href="#">Contracts</a>
+                        {% if is_granted('ROLE_ADMINISTRATOR') %}
+                        <a class="nav-link" href="#">Employees</a>
+                        <a class="nav-link" href="#">Departments</a>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+            <nav class="nav justify-content-end btn-group">
+            {% if is_granted('ROLE_MANAGER') %}
+                <a role="button" class="btn btn-sm btn-outline-warning nav-link" href="/dashboard/manager">Manager Board</a>
+            {% endif %}
+                <a role="button" class="btn btn-sm btn-outline-danger nav-link" href="/logout">Sign Out</a>
+            </nav>
+        </nav>
+        {% endif %}
+        <div class="container">
+            <div class="row">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+        <footer class="container-fluid bg-dark py-3">
+            {% block footer %}
+            {% endblock %}
+            <div class="container">
+                <div class="col text-center">
+                    {% if app.user %}
+                        <p class="text-muted">You are logged in as <span class="text-light">{{app.user.username}}</span></p>
+                    {% endif %}
+                    <span>
+                        <a href="#">Copyright StoaKippa 2019</a>
+                    </span>
+                </div>
+            </div>
+        </footer>
+        {% block javascripts %}
+        <script src="{{asset('js/jquery.min.js')}}"></script>
+        <script src="{{asset('js/jquery-ui.min.js')}}"></script>
+        <!-- <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script> //excluded as it interferes with popper library in firing off when clicking first on the dropdown menu-->
+        <script src="{{asset('js/popper.min.js')}}"></script>
+        <script src="{{asset('js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('js/list.min.js')}}"></script>
+        {% endblock javascripts %}
+        <script>
+            $('.date-input').datepicker({
+                dateFormat: 'dd/mm/yy'
+            });
+        </script>
+    </body>
+</html>
