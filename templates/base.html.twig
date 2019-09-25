@@ -40,16 +40,16 @@
                 {% block body %}{% endblock %}
             </div>
         </div>
-        <footer class="container-fluid bg-dark py-3">
+        <footer class="container-fluid bg-dark py-5">
             {% block footer %}
             {% endblock %}
             <div class="container">
-                <div class="col text-center">
+                <div class="col">
                     {% if app.user %}
-                        <p class="text-muted">You are logged in as <span class="text-light">{{app.user.username}}</span></p>
+                        <p class="text-warning">You are logged in as <span class="text-light">{{app.user.username}}</span></p>
                     {% endif %}
                     <span>
-                        <a href="#">Copyright StoaKippa 2019</a>
+                        <a class="text-info" href="#">StoaKippa &copy; 2019 &middot; Terms and Conditions Apply</a>
                     </span>
                 </div>
             </div>
