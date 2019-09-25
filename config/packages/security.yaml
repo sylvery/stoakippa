@@ -34,13 +34,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/movies, roles: ROLE_EMPLOYEE }
-        - { path: ^/employee, roles: ROLE_EMPLOYEE }
-        - { path: ^/admin, roles: ROLE_EMPLOYEE }
-        - { path: ^/leave, roles: ROLE_EMPLOYEE }
-# <<<<<<< HEAD
-        # - { path: ^/admin/employee, roles: ROLE_ADMIN }
-# =======
-        # - { path: ^/dashboard/manager, roles: ROLE_ADMIN }
-# >>>>>>> 8e96b08276c39f60672117b9345d66de8790133a
-        # - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/movies, roles: ROLE_EMPLOYEE }
+        # - { path: ^/employee, roles: ROLE_EMPLOYEE }
+        # - { path: ^/admin, roles: ROLE_EMPLOYEE }
+        # - { path: ^/leave, roles: ROLE_EMPLOYEE }
