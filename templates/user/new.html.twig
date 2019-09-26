@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User {{parent()}}{% endblock %}
+
+{% block body %}
+    {{ include('defaults/pagetitle.html.twig',{title:"Create New User", subtitle:"Page subtitle or help text to go here"})}}
+    <div id="content" class="col-12 mb-3">
+    	{{include('user/_form.html.twig')}}
+    </div>
+{% endblock %}

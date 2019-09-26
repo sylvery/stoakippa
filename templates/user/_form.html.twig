@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="btn-group btn-block">
+	    <button class="btn btn-info">{{ button_label|default('Save') }}</button>
+	    <a class="btn btn-secondary" role="button" href="{{path('user_index')}}">Cancel</a>
+    </div>
+{{ form_end(form) }}

@@ -12,8 +12,9 @@ class DefaultsController extends AbstractController
      */
     public function index()
     {
-        return $this->render('defaults/home.html.twig', [
-            'controller_name' => 'DefaultsController',
-        ]);
+    	if ($this->getUser()) {
+    		return $this->redirectToRoute('home');
+    	}
+      return $this->redirectToRoute('app_login');
     }
 }
