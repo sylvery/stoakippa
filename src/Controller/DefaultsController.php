@@ -12,8 +12,15 @@ class DefaultsController extends AbstractController
      */
     public function index()
     {
-    	if ($this->getUser()) {
-    		return $this->redirectToRoute('home');
+      $user = $this->getUser();
+    	if ($user) {
+        if ($this->isGranted('ROLE_CASHIER')) {
+          // return redirectToRoute('transaction_index')
+        }
+        if ($this->isGranted('ROLE_USER')) {
+          return $this->render('defaults/home.html.twig');
+        }
+    		return $this->redirectToRoute('user_index');
     	}
       return $this->redirectToRoute('app_login');
     }

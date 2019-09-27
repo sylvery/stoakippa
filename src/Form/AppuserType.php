@@ -57,7 +57,9 @@ class AppuserType extends AbstractType
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'Administrator' => 'ROLE_ADMINISTRATOR',
+                    'OWNER' => 'ROLE_OWNER',
+                    'ACCOUNTANT' => 'ROLE_ACCOUNTANT',
+                    'CASHIER' => 'ROLE_CASHIER',
                 ],
                 'choice_attr' => function(){
                     return ['class' => 'form-check-input col-1'];

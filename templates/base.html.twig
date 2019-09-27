@@ -18,29 +18,25 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <div class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <nav class="nav justify-content-center">
-                        <a class="nav-link" href="#">Leave</a>
-                        <a class="nav-link" href="#">Contracts</a>
                         {% if is_granted('ROLE_ADMINISTRATOR') %}
-                        <a class="nav-link" href="#">Employees</a>
-                        <a class="nav-link" href="#">Departments</a>
+                        <a class="nav-link" href="#">Reports</a>
+                        <a class="nav-link" href="{{path('user_index')}}">Employees</a>
                         {% endif %}
                     </nav>
                 </div>
             </div>
             <nav class="nav justify-content-end btn-group">
-            {% if is_granted('ROLE_MANAGER') %}
-                <a role="button" class="btn btn-sm btn-outline-warning nav-link" href="/dashboard/manager">Manager Board</a>
+            {% if is_granted('ROLE_ACCOUNTANT') %}
+                <a role="button" class="btn btn-sm btn-outline-warning nav-link" href="#">Accounts</a>
             {% endif %}
                 <a role="button" class="btn btn-sm btn-outline-danger nav-link" href="/logout">Sign Out</a>
             </nav>
         </nav>
         {% endif %}
-        <div id="main-content" class="container">
-            <div class="row">
-                {% block body %}{% endblock %}
-            </div>
+        <div id="main-content">
+            {% block body %}{% endblock %}
         </div>
-        <footer class="container-fluid bg-dark py-5">
+        <footer class="container-fluid bg-dark py-5 text-center">
             {% block footer %}
             {% endblock %}
             <div class="container">
