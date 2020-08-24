@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Manufacturers{% endblock %}
+
+{% block body %}
+    {% include "defaults/pagetitle.html.twig" with { title: 'Manufacturers' } %}
+    {% include "defaults/pageactions.html.twig" with {actions: [
+        {
+            name: 'add new manufacturer',
+            link: 'item_manufacturer_new',
+            deco: 'success',
+        },{
+            name: 'view item categories',
+            link: 'item_category_index',
+            deco: 'outline-success',
+        },{
+            name: 'Back to home',
+            link: 'home',
+            deco: 'primary'
+        }
+    ]} %}
+    <section class="row">
+        <div class="col">
+            <table class="table table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Contact</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item_manufacturer in item_manufacturers %}
+                    <tr>
+                        <td>{{ item_manufacturer.id }}</td>
+                        <td>{{ item_manufacturer.name }}</td>
+                        <td>{{ item_manufacturer.location }}</td>
+                        <td>{{ item_manufacturer.contact }}</td>
+                        <td class="btn-group">
+                            <a class="btn btn-sm btn-info" href="{{ path('item_manufacturer_show', {'id': item_manufacturer.id}) }}">show</a>
+                            <a class="btn btn-sm btn-warning" href="{{ path('item_manufacturer_edit', {'id': item_manufacturer.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark container-fluid">
+    <a class="navbar-brand" href="/">S&middot;T&middot;O&middot;A</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <div class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <nav class="nav justify-content-center">
+                {% if app.user %}
+                {% if is_granted('ROLE_ACCOUNTANT') or is_granted('ROLE_ADMINISTRATOR') or is_granted('ROLE_OWNER') %}
+                    <div class="dropdown open">
+                        <button class="btn btn-warning dropdown-toggle" type="button" id="itemDropTrigger" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                    Items
+                                </button>
+                        <div class="dropdown-menu" aria-labelledby="itemDropTrigger">
+                            <a class="dropdown-item" href="{{path('item_index')}}">Items List</a>
+                            <a class="dropdown-item" href="{{path('item_new')}}">New Item</a>
+                            <hr>
+                            <a class="dropdown-item" href="{{path('item_category_index')}}">Categories</a>
+                            <a class="dropdown-item" href="{{path('item_category_new')}}">New Item Category</a>
+                            <hr>
+                            <a class="dropdown-item" href="{{path('item_manufacturer_index')}}">Manufacturer</a>
+                            <a class="dropdown-item" href="{{path('item_manufacturer_new')}}">New Item Manufacturer</a>
+                        </div>
+                    </div>
+                    <div class="dropdown open">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="stocksDropTrigger" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                    Stocks
+                                </button>
+                        <div class="dropdown-menu" aria-labelledby="stocksDropTrigger">
+                            <a class="dropdown-item" href="{{path('stock_index')}}">Stocks List</a>
+                            <a class="dropdown-item" href="{{path('stock_new')}}">New Stock</a>
+                        </div>
+                    </div>
+                    <a class="nav-link" href="{{path('report_account')}}">Reports</a>
+                    <a class="nav-link" href="{{path('user_index')}}">Employees</a>
+                {% endif %}
+                {% if is_granted('ROLE_CASHIER') %}
+                    <a class="nav-link" href="{{path('sale_new')}}">New Sales</a>
+                {% endif %}
+                {% if is_granted('ROLE_ADMINISTRATOR') %}
+                    <div class="dropdown open">
+                        <button class="btn btn-info dropdown-toggle" type="button" id="salesDropTrigger" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                    Sales
+                                </button>
+                        <div class="dropdown-menu" aria-labelledby="salesDropTrigger">
+                            <a class="dropdown-item" href="{{path('sale_index')}}">Transactions</a>
+                            <a class="dropdown-item" href="{{path('sale_new')}}">New</a>
+                        </div>
+                    </div>
+                {% endif %}
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+    <nav class="nav justify-content-end btn-group">
+    {% if is_granted('ROLE_ACCOUNTANT') %}
+        <a role="button" class="btn btn-sm btn-outline-warning nav-link" href="#">Accounts</a>
+    {% endif %}
+        <a role="button" class="btn btn-sm btn-outline-danger nav-link" href="/logout">Sign Out</a>
+    </nav>
+</nav>

@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Item Category {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% include "defaults/pagetitle.html.twig" with { title: 'New Item Category' } %}
+    {{ include('item_category/_form.html.twig') }}
+{% endblock %}

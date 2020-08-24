@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sales Report{% endblock %}
+
+{% block body %}
+    {% include "defaults/pagetitle.html.twig" with {
+        title: 'Quarterly Reports',
+        subtitle: 'This page should show reports for the last 90 days'
+    } %}
+    <section class="row mb-3">
+        <div class="col-md-9">
+            <p class="h3">Transactions Report</p>
+            <div id="viz"></div>
+        </div>
+        <div class="col-md-3">
+            <p class="lead">These reports should be</p>
+            <ul class="list-group">
+                <li class="list-group-item">Total Balance</li>
+                <li class="list-group-item">Income (Sales)</li>
+                <li class="list-group-item">Expense (Stock)</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        var viz = d3.select('#viz');
+        var jsonfecth = d3.json('/api/sales');
+        var width = 600;
+        var data;
+        margin = ({top: 20, right: 0, bottom: 30, left: 40});
+        jsonfecth.then((d)=>{
+            data = d;
+            svgbar(d);
+        });
+        function svgbar(data) {
+            x = d3.scaleLinear()
+                .domain([0, d3.max(data,d=>d.cost)])
+                .range([0, width]);
+            y = d3.scaleBand()
+                .domain(data.map(d=>d.id))
+                .range([0, 20*data.length]);
+            const svg = viz.append('svg')
+                .attr('width', width)
+                .attr('height', y.range()[1])
+                .attr('font-family', 'sans-serif')
+                .attr('font-size', 10)
+                .attr('text-anchor', 'end');
+            const bar = svg.selectAll('g')
+                .data(data)
+                .join('g')
+                    .attr('transform', data => `translate(0,${y(data.id)})`);
+            bar.append('rect')
+                .attr('fill', 'crimson')
+                .attr('width', data=>x(data.cost))
+                .attr('height', y.bandwidth()-1);
+            bar.append('text')
+                .attr('fill', 'white')
+                .attr('y', y.bandwidth()/2)
+                .attr('x', data=>x(data.cost)-10)
+                .text(d => d.cost);
+            return svg.node();
+        }
+    </script>
+{% endblock %}

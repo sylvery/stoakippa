@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update Sale{% endblock %}
+
+{% block body %}
+{% include "defaults/pagetitle.html.twig" with { title: 'Update Sales Transaction' } %}
+<section class="row py-3">
+    <div class="col-12 mb-2">
+        {{ include('sale/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+</section>
+
+    <a href="{{ path('sale_index') }}">back to list</a>
+
+    {{ include('sale/_delete_form.html.twig') }}
+{% endblock %}

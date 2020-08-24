@@ -1,7 +1,2 @@
-./var
-./var/*
-/var/
-./vendor
-./vendor/*
-/vendor/*
+var/
 vendor

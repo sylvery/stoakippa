@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Item Categories {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% include "defaults/pagetitle.html.twig" with { title: 'Update Item Details' } %}
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ item_category.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ item_category.name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

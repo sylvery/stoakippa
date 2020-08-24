@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transactions {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% include "defaults/pagetitle.html.twig" with { title: 'List of transactions' } %}
+    {% include "defaults/pageactions.html.twig" with {actions: [
+        {
+            name: 'add new transaction',
+            link: 'transaction_new',
+            deco: 'success',
+        },{
+            name: 'Back to home',
+            link: 'home',
+            deco: 'primary'
+        }
+    ]} %}
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Datetime</th>
+                        <th>Quantity</th>
+                        <th>Cost</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction.id }}</td>
+                        <td>{{ transaction.datetime|date('F j Y - H:m') }}</td>
+                        <td>{{ transaction.quantity }}</td>
+                        <td>{{ transaction.cost }}</td>
+                        <td class="btn-group">
+                            <a class="btn btn-sm btn-info" href="{{ path('transaction_show', {'id': transaction.id}) }}">show</a>
+                            <a class="btn btn-sm btn-warning" href="{{ path('transaction_edit', {'id': transaction.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

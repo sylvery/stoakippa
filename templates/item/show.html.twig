@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Item Details {{ parent() }}{% endblock %}
+
+{% block body %}
+{% include "defaults/pagetitle.html.twig" with { title: 'Item Details' } %}
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ item.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ item.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Measurement</th>
+                        <td>{{ item.measurement }}</td>
+                    </tr>
+                    <tr>
+                        <th>Measurementunit</th>
+                        <td>{{ item.measurementunit }}</td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td>{{ item.price }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

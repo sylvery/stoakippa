@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stock {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% include "defaults/pagetitle.html.twig" with { title: 'List of Stocks' } %}
+    {% include "defaults/pageactions.html.twig" with {actions: [
+        {
+            name: 'add new stock record',
+            link: 'stock_new',
+            deco: 'success',
+        },{
+            name: 'Back to home',
+            link: 'home',
+            deco: 'primary'
+        }
+    ]} %}
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Datetime</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Cost</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for stock in stocks %}
+                    <tr>
+                        <td>{{ stock.id }}</td>
+                        <td>{{ stock.datetime ? stock.datetime|date('d/m/Y H:i:s') : '' }}</td>
+                        <td>{{ stock.item }}</td>
+                        <td>{{ stock.quantity }}</td>
+                        <td>{{ (stock.cost/100)|format_currency('PGK', locale='pg') }}</td>
+                        <td class="btn-group">
+                            <a class="btn btn-sm btn-info" href="{{ path('stock_show', {'id': stock.id}) }}">show</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

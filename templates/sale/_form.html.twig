@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+<section class="row">
+    <div class="col-8">
+        {{ form_widget(form.transactions, {
+            'attr': {'class': 'px-3 py-2 mb-2 row'},
+        }) }}
+        <hr>
+        {{ form_row(form.payment) }}
+    </div>
+    <div class="col-4">
+        <button class="btn btn-outline-success btn-block">{{ button_label|default('Save') }}</button>
+    </div>
+</section>
+{{ form_end(form) }}

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Items{% endblock %}
+
+{% block body %}
+    {% include "defaults/pagetitle.html.twig" with { title: 'List of items' } %}
+    {% include "defaults/pageactions.html.twig" with {actions: [
+        {
+            name: 'add new item',
+            link: 'item_new',
+            deco: 'success',
+        },{
+            name: 'add new category',
+            link: 'item_category_new',
+            deco: 'outline-success',
+        },{
+            name: 'add new manufacturer',
+            link: 'item_manufacturer_new',
+            deco: 'outline-success',
+        },{
+            name: 'Back to home',
+            link: 'home',
+            deco: 'primary'
+        }
+    ]} %}
+    <section class="row">
+        <div class="col-12">
+            <table class="table table-sm table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Measurement</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    <tr class="{{item.quantity<10 ? 'bg-danger' : item.quantity<15 ? 'bg-warning' : ''}}">
+                        <td>{{ item.itemCode }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.measurement }} {{ item.measurementunit }}</td>
+                        <td>{{ (item.price/100)|format_currency('PGK', locale='pg') }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>
+                            <a class="btn btn-outline-info btn-sm" role="button" href="{{ path('item_show', {'id': item.id}) }}">show</a>
+                            {# <a href="{{ path('item_edit', {'id': item.id}) }}">edit item</a> #}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

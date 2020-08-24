@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stock Details {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% include "defaults/pagetitle.html.twig" with { title: 'Stock Details' } %}
+    {% include "defaults/pageactions.html.twig" with {actions: [
+        {
+            name: 'add new stock record',
+            link: 'stock_new',
+            deco: 'success',
+        },{
+            name: 'Back to home',
+            link: 'home',
+            deco: 'primary'
+        }
+    ]} %}
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ stock.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Datetime</th>
+                        <td>{{ stock.datetime ? stock.datetime|date('Y-m-d H:i:s') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Item</th>
+                        <td>{{ stock.item }}</td>
+                    </tr>
+                    <tr>
+                        <th>Quantity</th>
+                        <td>{{ stock.quantity }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

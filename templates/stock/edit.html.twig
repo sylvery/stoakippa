@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit/Update Stock {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% include "defaults/pagetitle.html.twig" with { title: 'Update stock details' } %}
+    {{ include('stock/_form.html.twig', {'button_label': 'Update'}) }}
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Manufacturer Details{% endblock %}
+
+{% block body %}
+{% include "defaults/pagetitle.html.twig" with { title: item_manufacturer.name } %}
+{% include "defaults/pageactions.html.twig" with {actions: [
+    {
+        name: 'add new manufacturer',
+        link: 'item_manufacturer_new',
+        deco: 'success',
+    },{
+        name: 'view item categories',
+        link: 'item_category_index',
+        deco: 'outline-success',
+    },{
+        name: 'Back to home',
+        link: 'home',
+        deco: 'primary'
+    }
+]} %}
+<seciton class="row">
+    <div class="col">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ item_manufacturer.id }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ item_manufacturer.name }}</td>
+                </tr>
+                <tr>
+                    <th>Location</th>
+                    <td>{{ item_manufacturer.location }}</td>
+                </tr>
+                <tr>
+                    <th>Contact</th>
+                    <td>{{ item_manufacturer.contact }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</seciton>
+{% endblock %}

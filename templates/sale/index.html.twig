@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sales records {{ parent() }}{% endblock %}
+
+{% block body %}
+{% include "defaults/pagetitle.html.twig" with { title: 'Sales records' } %}
+{% include "defaults/pageactions.html.twig" with {actions: [
+    {
+        name: 'add new sale',
+        link: 'sale_new',
+        deco: 'success',
+    },{
+        name: 'Back to home',
+        link: 'home',
+        deco: 'primary'
+    }
+]} %}
+<div class="row">
+    <div class="col-12">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Datetime</th>
+                    <th>Income</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for sale in sales %}
+                <tr>
+                    <td>{{ sale.id }}</td>
+                    <td>{{ sale.datetime ? sale.datetime|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                            {% set totalSale = 0 %}
+                            {% for transaction in sale.transactions %}
+                                {% set totalSale = totalSale + transaction.cost %}
+                            {% endfor %}
+                            <span>
+                                K {{ (totalSale/100)|number_format(2) }}
+                            </span>
+            
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-sm" href="{{ path('sale_show', {'id': sale.id}) }}">show</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

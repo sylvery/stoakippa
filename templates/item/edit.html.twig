@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Item {{ parent() }}{% endblock %}
+
+{% block body %}
+{% include "defaults/pagetitle.html.twig" with { title: 'Update Item Details' } %}
+{{ include('item/_form.html.twig') }}
+{% include "defaults/pageactions.html.twig" with {actions: [
+    {
+        name: 'cancel',
+        link: 'item_index',
+        deco: 'success',
+    },{
+        name: 'Back to home',
+        link: 'home',
+        deco: 'primary'
+    }
+]} %}
+{% endblock %}

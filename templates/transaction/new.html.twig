@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Transaction {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% include "defaults/pagetitle.html.twig" with { title: 'Add new transaction' } %}
+    {{ include('transaction/_form.html.twig') }}
+{% endblock %}
