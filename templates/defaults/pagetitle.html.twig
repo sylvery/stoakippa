@@ -1,4 +1,6 @@
 <div id="title" class="col-12">
 	<p class="display-4 text-info">{{ title }}</p>
+	{% if subtitle is defined %}
 	<p class="text-warning p-2 bg-dark">{{ subtitle }}</p>
+	{% endif %}
 </div>

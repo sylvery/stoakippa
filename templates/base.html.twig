@@ -10,30 +10,30 @@
     <body>
         {% if app.user %}
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark container-fluid">
-            <a class="navbar-brand" href="#">S&middot;T&middot;O&middot;A</a>
+            <a class="navbar-brand" href="{{path('home')}}">S&middot;T&middot;O&middot;A</a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <div class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <nav class="nav justify-content-center">
-                        {% if is_granted('ROLE_ADMINISTRATOR') %}
-                        <a class="nav-link" href="#">Reports</a>
-                        <a class="nav-link" href="{{path('user_index')}}">Employees</a>
-                        {% endif %}
+                    {# {{ knp_menu_render('main')}} #}
+                    {% set menuItem = knp_menu_get('main') %}
+                    <nav class="nav justify-content-center text-uppercase">
+                    {% for item in menuItem %}
+                        <a class="nav-link {{item.isCurrent ? 'active' : ''}}" href="{{item.uri}}">{{item.name}}</a>
+                    {% endfor %}
                     </nav>
+                    {# {{dump(menuItem)}} #}
                 </div>
             </div>
             <nav class="nav justify-content-end btn-group">
-            {% if is_granted('ROLE_ACCOUNTANT') %}
                 <a role="button" class="btn btn-sm btn-outline-warning nav-link" href="#">Accounts</a>
-            {% endif %}
                 <a role="button" class="btn btn-sm btn-outline-danger nav-link" href="/logout">Sign Out</a>
             </nav>
         </nav>
         {% endif %}
-        <div id="main-content">
+        <div id="main-content" class="container">
             {% block body %}{% endblock %}
         </div>
         <footer class="container-fluid bg-dark py-5 text-center">
