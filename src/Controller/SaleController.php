@@ -12,18 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Workflow\Registry;
 
 /**
  * @Route("/sale")
  */
 class SaleController extends AbstractController
 {
-    private $wf;
-    public function __construct(Registry $registry)
-    {
-        $this->wf = $registry;
-    }
     /**
      * @Route("/", name="sale_index", methods={"GET"})
      */
@@ -61,22 +55,6 @@ class SaleController extends AbstractController
                     $this->addFlash('danger', $item->getNameDesc() . ' stock will be depleted soon. You need to re-stock asap!');
                 }
             }
-            $swf = $this->wf->get($sale);
-            if ($swf->can($sale, 'to_checkout')) {
-                // var_dump($swf); exit; 
-            }
-            // $transactions = $form->getData()->getTransactions();
-            // foreach ($transactions as $transaction) {
-            //     $transOb = new Transaction();
-            //     $transOb
-            //         ->setDatetime()
-            //         ->setItem($transaction->getItem())
-            //         ->setQuantity($transaction->getQuantity())
-            //         // ->setCost($transaction->getItem()->getCost())
-            //         ->setSale($sale)
-            //     ;
-            //     $entityManager->persist($transOb);
-            // }
             $entityManager->persist($sale);
             $entityManager->flush();
 
