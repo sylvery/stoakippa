@@ -13,7 +13,7 @@ class MenuBuilder
         $this->factory = $factory;
     }
 
-    public function createMenu(array $options): ItemInterface
+    public function createMenu(array $options)
     {
         $menu = $this->factory->createItem('root');
         $menu->addChild('Home', ['route' => 'home']);
