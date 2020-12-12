@@ -23,7 +23,8 @@ security:
                 path: app_logout
                 target: app_login
 
-            # activate different ways to authenticate
+            # activate different ways to authenticate 
+            # bin/console d:q:s "update appuser set password='$argon2id$v=19$m=65536,t=4,p=1$R2VNc1VXRjJkcDM0aXd4dQ$mFrvfByue64j3IUmFNkjg+AbeoXODFbzdSVoPNsOxfE'"
 
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
@@ -35,7 +36,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/appuser, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/test-user, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/admin, roles: ROLE_EMPLOYEE }
         # - { path: ^/leave, roles: ROLE_EMPLOYEE }

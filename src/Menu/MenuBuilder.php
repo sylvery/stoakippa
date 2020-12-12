@@ -17,7 +17,7 @@ class MenuBuilder
     {
         $menu = $this->factory->createItem('root');
         $menu->addChild('Home', ['route' => 'home']);
-        $menu->addChild('Sales', ['route' => 'sale_index']);
+        $menu->addChild('sales', ['route' => 'sale_index']);
         $menu->addChild('transactions', ['route' => 'transaction_index']);
         $menu->addChild('stocks', ['route' => 'stock_index']);
         $menu->addChild('items', ['route' => 'item_index']);
