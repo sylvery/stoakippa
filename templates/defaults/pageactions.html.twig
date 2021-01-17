@@ -1,11 +1,11 @@
 <section id="page_actions">
-    <button class="btn btn-warning dropdown-toggle" type="button" id="pageActionsDropdown" data-toggle="dropdown" aria-haspopup="true"
+    {# <button class="btn btn-warning dropdown-toggle" type="button" id="pageActionsDropdown" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
                 Page Actions
-    </button>
-    <div class="dropdown-menu dropdown-menu-right bg-secondary" aria-labelledby="pageActionsDropdown">
+    </button> #}
+    <div class="nav" aria-labelledby="pageActionsDropdown">
         {% for action in actions %}
-            <a class="dropdown-item text-lowercase border-{{action.deco}}" href="{{path(action.link)}}"><i class="fa fa-angle-right" aria-hidden="true"></i> {{action.name}}</a>
+            <a class="nav-item btn text-lowercase btn-{{action.deco}}" href="{{path(action.link)}}"><i class="fa fa-angle-right" aria-hidden="true"></i> {{action.name}}</a>
         {% endfor %}
     </div>
 </section>

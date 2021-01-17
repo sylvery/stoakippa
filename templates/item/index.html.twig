@@ -42,7 +42,7 @@
                         <td>{{ item.itemCode }}</td>
                         <td>{{ item.name }}</td>
                         <td>{{ item.measurement }} {{ item.measurementunit }}</td>
-                        <td>{{ (item.price/100)|format_currency('PGK', locale='pg') }}</td>
+                        <td>K {{ (item.price/100)|number_format(2) }}</td>
                         <td>{{ item.quantity }}</td>
                         <td>
                             <a class="btn btn-outline-info btn-sm" role="button" href="{{ path('item_show', {'id': item.id}) }}">show</a>

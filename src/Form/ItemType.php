@@ -23,7 +23,7 @@ class ItemType extends AbstractType
                 'attr' => ['class' => 'form-control'],
                 'help_attr' => ['class' => 'text-muted small'],
                 'help' => 'Speficy weight or volume in the simplest measurement standard'
-                ])
+            ])
             ->add('measurementunit', ChoiceType::class, [
                 'choices' => [
                     'Gram' => 'g',
@@ -33,9 +33,12 @@ class ItemType extends AbstractType
                 ],
                 'multiple' => false,
                 'expanded' => true,
+                'row_attr' => ['class' => 'input-group'],
                 'attr' => ['class' => 'form-control d-flex justify-content-between'],
-                'help_attr' => ['class' => 'text-muted small'],
-                'help' => 'Speficy the unit of measurement to measure the item with'
+                'help_attr' => ['class' => 'text-muted small col-12'],
+                'help' => 'Speficy the unit of measurement to measure the item with',
+                'label_attr' => ['class' => 'col-12'],
+                'label' => 'Unit of Measurement',
             ])
             ->add('price', NumberType::class, [
                 'attr' => [
@@ -43,6 +46,8 @@ class ItemType extends AbstractType
                     'min' => 1,
                     'type' => 'number'
                 ],
+                'help_attr' => ['class' => 'text-muted small'],
+                'help' => 'the price is in toea. eg K2.50 would be recorded as 250',
             ])
             // ->add('quantity', NumberType::class, [
             //     'attr' => [

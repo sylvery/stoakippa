@@ -7,9 +7,9 @@
             {% include "stylesheets.html.twig" %}
         {% endblock %}
     </head>
-    <body>
+    <body class="vh-100">
         {% if app.user %}
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark container-fluid">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark container-fluid fixed-top">
             <a class="navbar-brand" href="{{path('home')}}">S&middot;T&middot;O&middot;A</a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@
             </nav>
         </nav>
         {% endif %}
-        <div id="main-content" class="container">
+        <div id="main-content" class="container pt-5">
             {% block body %}{% endblock %}
         </div>
         <footer class="container-fluid bg-dark py-5 text-center">
@@ -50,18 +50,19 @@
                 </div>
             </div>
         </footer>
+        {{ encore_entry_script_tags('app') }}
         {% block javascripts %}
-        <script src="{{asset('js/jquery.min.js')}}"></script>
+        {# <script src="{{asset('js/jquery.min.js')}}"></script>
         <script src="{{asset('js/jquery-ui.min.js')}}"></script>
         <!-- <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script> //excluded as it interferes with popper library in firing off when clicking first on the dropdown menu-->
         <script src="{{asset('js/popper.min.js')}}"></script>
         <script src="{{asset('js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('js/list.min.js')}}"></script>
+        <script src="{{asset('js/list.min.js')}}"></script> #}
         {% endblock javascripts %}
-        <script>
+        {# <script>
             $('.date-input').datepicker({
                 dateFormat: 'dd/mm/yy'
             });
-        </script>
+        </script> #}
     </body>
 </html>

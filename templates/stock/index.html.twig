@@ -35,7 +35,7 @@
                         <td>{{ stock.datetime ? stock.datetime|date('d/m/Y H:i:s') : '' }}</td>
                         <td>{{ stock.item }}</td>
                         <td>{{ stock.quantity }}</td>
-                        <td>{{ (stock.cost/100)|format_currency('PGK', locale='pg') }}</td>
+                        <td>{{ (stock.cost/100)|number_format(2) }}</td>
                         <td class="btn-group">
                             <a class="btn btn-sm btn-info" href="{{ path('stock_show', {'id': stock.id}) }}">show</a>
                         </td>
