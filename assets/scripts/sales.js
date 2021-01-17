@@ -26,7 +26,7 @@ function addTransactionForm($collectionHolder, $newLinkLi) {
     // Display the form in the page in an li, before the "Add a tag" link li
     var $newFormLi = $('<div class="col-12"></div>').append(newForm);
     $newLinkLi.before($newFormLi);
-    var $price = 0;
+    // var $price = 0;
     var $selitem = '';
     $('#sale_transactions_'+index+'_saleitem').on('change',(e)=>{
         $selitem = e.currentTarget['value'];
@@ -39,11 +39,11 @@ function addTransactionForm($collectionHolder, $newLinkLi) {
 
 function getItemPrice(url, qty) {
     var $price = $.getJSON(url);
-    priceText = $('#price').text();
+    var $priceText = $('#price').text();
     $price.done((d)=>{
-        priceText === '' ? priceText = 0 : priceText = parseFloat(priceText);
-        priceText = priceText + d.price*parseFloat(qty)/100;
-        $('#price').text(priceText);
+        $priceText === '' ? $priceText = 0 : $priceText = parseFloat($priceText);
+        $priceText = $priceText + d.price*parseFloat(qty)/100;
+        $('#price').text($priceText);
     });
 }
 
